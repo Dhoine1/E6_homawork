@@ -1,0 +1,21 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+
+Редактирование чат комнаты. Автор - {{ request.user.username }}
+<br>
+<p>
+
+<form enctype="multipart/form-data" method="post" action=".">
+    {% csrf_token %}
+
+<!--<input type="hidden" name="author" value="{{ request.user }}">-->
+<label>Название: </label> {{ form.titles }}
+<label>Участники: </label> {{ form.participants }} <br><br>
+<button type="submit">Сохранить</button>
+
+</form>
+</p>
+
+
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% load static %}
+<html>
+<title>
+    Чат с пользователями
+</title>
+<head>
+
+</head>
+<body>
+<table width="100%"  cellspacing="10">
+    <tr>
+        <td width="100" bgcolor="grey" align="center">
+            <a href="/">На главную</a>
+        </td>
+        <td align="center" bgcolor="grey">
+            <p>
+            {% if request.user.is_authenticated %}
+            <p> <h3>Привет, {{ request.user.username }}<br>
+            Твой ник - {{ request.user.member.nickname}} <br>
+            <a href = '/accounts/logout'>Выйти </a> <br>
+            <a href = '/{{ request.user.id }}/edit'>Редактировать профиль</a></h3>
+            <td align="center" bgcolor="grey"> <img src="{{ request.user.member.avatar.url }}" width="100"></td>
+            {% else %}
+            <p>
+            <h3><a href = '/accounts/login'> Войти </a></p></h3>
+            {% endif %}
+        </td>
+    </tr>
+</table>
+
+        {% block content %}
+        {{ flatpage.content }}
+        {% endblock content %}
+</body>
+
+</html>

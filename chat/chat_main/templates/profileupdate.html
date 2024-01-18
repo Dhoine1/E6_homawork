@@ -1,0 +1,14 @@
+
+Редактирование профиля {{ request.user.username }}
+<br>
+<p>
+<form enctype="multipart/form-data" method="post" action=".">
+    {% csrf_token %}
+<!--<input type="hidden" name="user" value="{{ request.user.id }}">-->
+<label>Никнейм: </label> {{ form.nickname }}
+<label>Аватар: </label> {{ form.avatar }} <br><br>
+<button type="submit">Сохранить</button>
+
+</form>
+</p>
+

@@ -1,0 +1,44 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+
+<table width="100%" cellspacing="10" border="1">
+    <tr>
+        <td width="50%" align="center"> <h3>Список ваших чатов</h3></td>
+
+        <td align="center"><h3>Список всех пользователей</h3></td>
+    </tr>
+    <td align="center">
+        <h4>Вы владелец:</h4>
+
+        {% for chat in chats %}
+        <form action="{{ chat.id }}/chat">
+            <input type="submit" value="{{ chat.titles }} " />
+        </form>
+        <a href="{{ chat.id }}/update">Редактировать</a>
+        <a href="{{ chat.id }}/delete">Удалить</a>
+        <hr>
+        {% endfor %}
+
+        <h4>Вы участник:</h4>
+        {% for value in another_chat %}
+         <form action="{{ value.id }}/chat">
+            <input type="submit" value="{{ value.titles }} " />
+         </form>
+        {% endfor %}
+
+    </td>
+    <td align="center">
+        {% for member in all_users %}
+        <h4><a href="{{ member.id }}/profiledetail">{{ member.nickname }} </a> -  <img src="{{member.avatar.url}}" width="50" height="50"> </h4>
+        {% endfor %}
+    </td>
+</table>
+<hr>
+<form action="create/">
+
+    <input type="submit" value="Создать новый чат" />
+</form>
+
+{% endblock content %}
+

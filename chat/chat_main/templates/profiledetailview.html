@@ -1,0 +1,20 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+
+<h1>{{ member_nik }}</h1>
+<img src="{{member_ava}}">
+<br><br><br>
+{% if request.user.is_authenticated %}
+    {% if show == 1 %}
+    <form enctype="multipart/form-data" method="post" >
+        {% csrf_token %}
+        <label>Название для приватного чата: </label><br>
+        <textarea cols="100" name="text" maxlength="64"></textarea>
+        <br>
+        <button type="submit">Создать</button>
+    </form>
+    {% endif %}
+{% endif %}
+
+{% endblock content %}
